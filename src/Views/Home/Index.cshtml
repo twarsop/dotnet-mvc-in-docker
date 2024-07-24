@@ -2,7 +2,27 @@
     ViewData["Title"] = "Home Page";
 }
 
+<script>
+    $(function() {
+        $("#dieRollForm").submit(function(e){
+            e.preventDefault();
+
+            $.ajax({
+                type: "POST",
+                data: {},
+                url: '/Home/DieRoll',                    
+                success: function (result) {
+                    $("#dieRollResult").text(result);
+                }
+            })
+        });
+    });
+    
+</script>
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form id="dieRollForm" method="post">
+         <button type="submit">Die Roll</button>
+    </form>
+    <label id="dieRollResult"></label>
 </div>
